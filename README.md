@@ -21,9 +21,29 @@ Ollama model (`qwen3.5:9b`, Q4) — with **fully automated Ollama lifecycle mana
 
 ## Install
 
-Requires **Python 3.10+** on macOS (Apple Silicon). Ollama itself is *not* a
-prerequisite for launching — the app installs the daemon's absence gracefully,
-and auto-starts it if the binary is on your `PATH`.
+On **macOS 14+** (Apple Silicon recommended), **double-click `run.command` in
+Finder**. That is the entire setup and launch process. You do not need to install
+Python, activate an environment, run pip, or install Ollama yourself.
+
+On the first launch, the launcher automatically:
+
+1. Downloads [uv](https://docs.astral.sh/uv/) and Python 3.12 if a usable `.venv`
+   does not exist, then creates it.
+2. Installs the app and its dependencies into `.venv`.
+3. Finds an existing Ollama installation, or downloads it into `.bootstrap`.
+4. Opens the app, which starts the Ollama daemon and downloads the selected model
+   if needed.
+
+The first launch needs internet access and disk space for the model download
+(several GB), and can take a while. Later launches reuse the installation;
+dependency changes in `pyproject.toml` trigger an automatic update. Generated
+environments, downloaded tools, and caches are ignored by Git. No administrator
+password or shell-profile changes are needed. If setup fails, the terminal shows
+the error; double-click `run.command` again to retry.
+
+### Manual installation (optional)
+
+For a manual install, use **Python 3.10+** and an existing Ollama installation:
 
 ```bash
 # from a checkout
@@ -35,6 +55,15 @@ uv pip install -e .
 ```
 
 ## Run
+
+Double-click `run.command`, or launch it from a terminal without activating anything:
+
+```bash
+./run.command
+./run.command --level 2
+```
+
+For manual installations with the environment activated:
 
 ```bash
 prompt-enhancer                    # or: python -m prompt_enhancer

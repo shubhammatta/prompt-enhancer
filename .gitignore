@@ -1,4 +1,7 @@
 .venv/
+.venv-backup.*/
+.bootstrap/
+myenv/
 __pycache__/
 *.py[cod]
 *.egg-info/
